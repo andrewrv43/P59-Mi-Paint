@@ -1,15 +1,6 @@
 #include "principal.h"
 #include "ui_principal.h"
 
-#include <QImage>
-#include <QPainter>
-#include <QMouseEvent>
-#include <QPaintEvent>
-#include <QDebug>
-#include <QInputDialog>
-#include <QColorDialog>
-#include <QFileDialog>
-#include <QMessageBox>
 
 #define DEFAULT_ANCHO 3
 
@@ -30,6 +21,8 @@ Principal::Principal(QWidget *parent)
     mColor = Qt::black;
     mAncho = DEFAULT_ANCHO;
     mNumLineas = 0;
+    m_Orden=0;
+    m_Brush= Qt::transparent;
 }
 
 Principal::~Principal()
@@ -63,31 +56,65 @@ void Principal::mouseMoveEvent(QMouseEvent *event)
         event->accept();
         return;
     }
-    // Capturar el punto donde se suelta el mouse
+    //Capturar el punto donde se suelta el mouse
     mFinal = event->pos();
-    // Crear un pincel y establecer atributos
-    QPen pincel;
+    //Crear un pincel y establecer atributos
     pincel.setColor(mColor);
     pincel.setWidth(mAncho);
-    // Dibujar una linea
     mPainter->setPen(pincel);
+    mPainter->setBrush(m_Brush);
+    //Dibujar una linea
+    if(m_Orden==1&&ui->actionLibre->isChecked()){
+    dibujarLineas();
+    mInicial = mFinal;
+    }
+
+    //actualizar el punto inicial
+    update();
+}
+
+void Principal::mouseReleaseEvent(QMouseEvent *event)
+{
+    if(m_Orden==2){
+        mPainter->drawRect(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
+        mNumLineas+=4;
+        ui->statusbar->showMessage("Número de líneas: " + QString::number(mNumLineas));
+    }
+    else if(m_Orden==1&&!ui->actionLibre->isChecked()){
+        mPainter->drawLine(mInicial, mFinal);
+        // Mostrar el número de líneas en la barra de estado
+        ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+    }
+    else if(m_Orden==3){
+    mPainter->drawEllipse(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
+    ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+    }
+
+    mPuedeDibujar = false;
+    // Aceptar el vento
+    event->accept();
+    // Actualizar la interfaz
+    update();
+
+}
+
+void Principal::dibujarLineas()
+{
     mPainter->drawLine(mInicial, mFinal);
     // Mostrar el número de líneas en la barra de estado
     ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
     // Actualizar la interfaz
     update();
-    // actualizar el punto inicial
-    mInicial = mFinal;
 }
 
-void Principal::mouseReleaseEvent(QMouseEvent *event)
+void Principal::lineaUnica()
 {
-    mPuedeDibujar = false;
-    // Aceptar el vento
-    event->accept();
-
+    mPainter->drawLine(mInicial, mFinal);
+    // Mostrar el número de líneas en la barra de estado
+    ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+    // Actualizar la interfaz
+    update();
 }
-
 
 void Principal::on_actionAncho_triggered()
 {
@@ -134,3 +161,25 @@ void Principal::on_actionGuardar_triggered()
                                  "No se pudo almacenar la imagen.");
     }
 }
+
+void Principal::on_actionLineas_triggered()
+{
+    m_Orden=1;
+}
+
+void Principal::on_actionRect_nculos_triggered()
+{
+    m_Orden=2;
+    ui->actionLibre->setChecked(false);
+}
+
+void Principal::on_actionCircunferencias_triggered()
+{
+    m_Orden=3;
+}
+
+void Principal::on_actionRelleno_triggered()
+{
+    m_Brush = QColorDialog::getColor(m_Brush,this,"Color de relleno")   ;
+}
+

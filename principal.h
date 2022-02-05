@@ -3,6 +3,16 @@
 
 #include <QMainWindow>
 
+#include <QImage>
+#include <QPainter>
+#include <QMouseEvent>
+#include <QPaintEvent>
+#include <QDebug>
+#include <QInputDialog>
+#include <QColorDialog>
+#include <QFileDialog>
+#include <QMessageBox>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Principal; }
 QT_END_NAMESPACE
@@ -20,7 +30,8 @@ protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
-
+    void dibujarLineas();
+    void lineaUnica();
 
 private slots:
     void on_actionAncho_triggered();
@@ -33,6 +44,14 @@ private slots:
 
     void on_actionGuardar_triggered();
 
+    void on_actionLineas_triggered();
+
+    void on_actionRect_nculos_triggered();
+
+    void on_actionCircunferencias_triggered();
+
+    void on_actionRelleno_triggered();
+
 private:
     Ui::Principal *ui;
     QImage *mImagen;        // Imagen sobre la que se va a dibujar
@@ -43,5 +62,8 @@ private:
     int mAncho;             // Define el ancho del pincel
     QColor mColor;          // Define el color del pincel
     int mNumLineas;         // Cuenta el número de líneas
+    QPen pincel;
+    int m_Orden;
+    QColor m_Brush;
 };
 #endif // PRINCIPAL_H

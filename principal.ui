@@ -41,6 +41,7 @@
     </property>
     <addaction name="actionColor"/>
     <addaction name="actionAncho"/>
+    <addaction name="actionRelleno"/>
    </widget>
    <widget class="QMenu" name="menuForma">
     <property name="title">
@@ -48,6 +49,7 @@
     </property>
     <addaction name="actionLineas"/>
     <addaction name="actionLibre"/>
+    <addaction name="separator"/>
     <addaction name="actionRect_nculos"/>
     <addaction name="actionCircunferencias"/>
    </widget>
@@ -100,6 +102,9 @@
    <property name="text">
     <string>Lineas</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
   </action>
   <action name="actionLibre">
    <property name="checkable">
@@ -108,15 +113,32 @@
    <property name="text">
     <string>Libre</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+L</string>
+   </property>
   </action>
   <action name="actionRect_nculos">
    <property name="text">
     <string>Rectánculos</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
   </action>
   <action name="actionCircunferencias">
    <property name="text">
     <string>Circunferencias</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionRelleno">
+   <property name="text">
+    <string>Relleno</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+R</string>
    </property>
   </action>
  </widget>
