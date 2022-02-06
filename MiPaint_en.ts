@@ -123,5 +123,55 @@
         <source>Ctrl+Shift+R</source>
         <translation>Ctrl+Shift+R</translation>
     </message>
+    <message>
+        <location filename="principal.cpp" line="81"/>
+        <location filename="principal.cpp" line="86"/>
+        <location filename="principal.cpp" line="90"/>
+        <location filename="principal.cpp" line="105"/>
+        <source>Número de líneas: </source>
+        <translation>Line number: </translation>
+    </message>
+    <message>
+        <location filename="principal.cpp" line="122"/>
+        <source>Ancho del pincel</source>
+        <translation>Brush width</translation>
+    </message>
+    <message>
+        <location filename="principal.cpp" line="123"/>
+        <source>Ingrese el ancho del pincel de dibujo</source>
+        <translation>Enter the width of the drawing brush</translation>
+    </message>
+    <message>
+        <location filename="principal.cpp" line="137"/>
+        <source>Color del pincel</source>
+        <translation>Brush color</translation>
+    </message>
+    <message>
+        <location filename="principal.cpp" line="150"/>
+        <location filename="principal.cpp" line="156"/>
+        <location filename="principal.cpp" line="160"/>
+        <source>Guardar imagen</source>
+        <translation>Save picture</translation>
+    </message>
+    <message>
+        <location filename="principal.cpp" line="152"/>
+        <source>Imágenes (*.png)</source>
+        <translation>Pictures (*.png)</translation>
+    </message>
+    <message>
+        <location filename="principal.cpp" line="157"/>
+        <source>Archivo almacenado en: </source>
+        <translation>file stored in: </translation>
+    </message>
+    <message>
+        <location filename="principal.cpp" line="161"/>
+        <source>No se pudo almacenar la imagen.</source>
+        <translation>The picture was&apos;t able to save.</translation>
+    </message>
+    <message>
+        <location filename="principal.cpp" line="183"/>
+        <source>Color de relleno</source>
+        <translation>Fill color</translation>
+    </message>
 </context>
 </TS>

@@ -78,16 +78,16 @@ void Principal::mouseReleaseEvent(QMouseEvent *event)
     if(m_Orden==2){
         mPainter->drawRect(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
         mNumLineas+=4;
-        ui->statusbar->showMessage("Número de líneas: " + QString::number(mNumLineas));
+        ui->statusbar->showMessage (tr("Número de líneas: ") + QString::number(mNumLineas));
     }
     else if(m_Orden==1&&!ui->actionLibre->isChecked()){
         mPainter->drawLine(mInicial, mFinal);
         // Mostrar el número de líneas en la barra de estado
-        ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+        ui->statusbar->showMessage(tr("Número de líneas: ")+ QString::number(++mNumLineas));
     }
     else if(m_Orden==3){
     mPainter->drawEllipse(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
-    ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+    ui->statusbar->showMessage(tr("Número de líneas: ")+ QString::number(++mNumLineas));
     }
 
     mPuedeDibujar = false;
@@ -102,7 +102,7 @@ void Principal::dibujarLineas()
 {
     mPainter->drawLine(mInicial, mFinal);
     // Mostrar el número de líneas en la barra de estado
-    ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+    ui->statusbar->showMessage(tr("Número de líneas: ")+ QString::number(++mNumLineas));
     // Actualizar la interfaz
     update();
 }
@@ -119,8 +119,8 @@ void Principal::lineaUnica()
 void Principal::on_actionAncho_triggered()
 {
     mAncho = QInputDialog::getInt(this,
-                                  "Ancho del pincel",
-                                  "Ingrese el ancho del pincel de dibujo",
+                                  tr("Ancho del pincel"),
+                                  tr("Ingrese el ancho del pincel de dibujo"),
                                   mAncho,
                                   1, 100);
 }
@@ -134,7 +134,7 @@ void Principal::on_actionColor_triggered()
 {
     mColor = QColorDialog::getColor(mColor,
                                     this,
-                                    "Color del pincel");
+                                    tr("Color del pincel"));
 }
 
 void Principal::on_actionNuevo_triggered()
@@ -147,18 +147,18 @@ void Principal::on_actionNuevo_triggered()
 void Principal::on_actionGuardar_triggered()
 {
     QString nombreArchivo = QFileDialog::getSaveFileName(this,
-                                                         "Guardar imagen",
+                                                         tr("Guardar imagen"),
                                                          QString(),
-                                                         "Imágenes (*.png)");
+                                                         tr("Imágenes (*.png)"));
     if ( !nombreArchivo.isEmpty() ){
         if (mImagen->save(nombreArchivo))
             QMessageBox::information(this,
-                                     "Guardar imagen",
-                                     "Archivo almacenado en: " + nombreArchivo);
+                                     tr("Guardar imagen"),
+                                     tr("Archivo almacenado en: " )+ nombreArchivo);
         else
             QMessageBox::warning(this,
-                                 "Guardar imagen",
-                                 "No se pudo almacenar la imagen.");
+                                 tr("Guardar imagen"),
+                                 tr("No se pudo almacenar la imagen."));
     }
 }
 
@@ -180,6 +180,6 @@ void Principal::on_actionCircunferencias_triggered()
 
 void Principal::on_actionRelleno_triggered()
 {
-    m_Brush = QColorDialog::getColor(m_Brush,this,"Color de relleno")   ;
+    m_Brush = QColorDialog::getColor(m_Brush,this,tr("Color de relleno"))   ;
 }
 
