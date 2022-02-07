@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QLocale::system().language();
+
    QTranslator traduccion;
 
 
@@ -22,6 +22,11 @@ int main(int argc, char *argv[])
         traduccion.load(":/MiPaint_en.qm");
         a.installTranslator(&traduccion);
     }
+    else if(QLocale::system().language()==QLocale::Russian){
+        traduccion.load(":/MiPaint_ru.qm");
+        a.installTranslator(&traduccion);
+    }
+
 
 //    // Si es diferente de español, se instala la traducción en TODA la aplicación
 //    if (idiomaSeleccionado != "Español"){}

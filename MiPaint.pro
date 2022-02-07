@@ -25,8 +25,9 @@ HEADERS += \
 FORMS += \
     principal.ui
 
-TRANSLATIONS =\
-    MiPaint_en.ts
+TRANSLATIONS +=\
+    MiPaint_en.ts \
+    MiPaint_ru.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
